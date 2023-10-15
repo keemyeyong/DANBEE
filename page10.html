@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <title>DANBEE.10</title>
+    <style>
+      @import url(//fonts.googleapis.com/earlyaccess/nanummyeongjo.css);
+         /* 스타일을 지정하여 초기에 투명하게 설정 */
+  .fade-in {
+    opacity: 0;
+    transition: opacity 1s ease-in-out; /* 페이드 인 애니메이션 지속 시간과 이징 효과 설정 */
+    display: in;
+  }
+
+  body {
+    background-image: url('b22.jpg'); /* 이미지 파일 경로 설정 */
+  background-size: cover; /* 이미지를 화면에 맞게 조절 */
+  background-repeat: no-repeat; /* 이미지 반복 없음 */
+  background-position: center center; /* 이미지 중앙 정렬 */
+  background-attachment: fixed; /* 스크롤 시 배경 고정 (선택 사항) */
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* 화면 높이의 100%로 설정하여 화면 중앙에 위치시킴 */
+  text-align: center; /* 글을 가운데 정렬 */
+}
+
+.container {
+  
+  text-align: left; /* 내용을 왼쪽 정렬 */
+  padding: 20px; /* 원하는 패딩 설정 */
+}
+.fade-in {
+  font-size: 17px; 
+  font-family: 'Nanum Myeongjo';
+  color: #ffffff; /* 텍스트 폰트 색상 설정 (예: 빨간색) */
+  
+}
+.falling-text {
+    position: absolute;
+    font-size: 15px; /* 폰트 크기 조절 */
+    font-family: 'Nanum Myeongjo';
+    color: #000000;
+    white-space: nowrap; /* 텍스트가 한 줄로 끊기지 않도록 설정 */
+    display: inline-block; /* 한 글자씩 나타나도록 인라인 블록으로 설정 */
+    cursor: pointer; /* 커서를 포인터로 변경하여 클릭 가능하게 함 */
+    background-color: #f4ce53; /* 텍스트 박스 색상 지정 (예: 연한 회색) */
+    
+    padding: 6px; /* 텍스트 박스 패딩 설정 (선택 사항) */
+
+   /* 텍스트 주변에 백그라운드 컬러를 갖는 사각형 스트로크 설정 */
+   text-decoration: none;
+    box-shadow: 0 0 0 1px #000000; /* 2px 두께의 스트로크 박스, 색상은 #f4ce53 (예: 연한 회색) */
+
+
+  }
+
+      </style>
+</head>
+<body>
+  <div class="falling-text" id="text1" onclick="goToPage('recode.html')">☂</div>
+<div class="falling-text" id="text2" onclick="goToPage('recode.html')">☂</div>
+<div class="falling-text" id="text3" onclick="goToPage('recode.html')">☂</div>
+    <div class="container">
+
+<p class="fade-in">"하지만 나는 아직 잘 모르겠어.<br><br> 나는 어찌할 바를 모르겠어.<br><br> 너는 어머니가 나를 사랑했다고 말해. 아주 깊이 사랑하고 있었다고 말이야.<br><br> 네 말을 믿고 싶어.<br><br> 하지만 정말로 그랬더라도 나는 아직 잘 모르겠어.<br><br><br> 왜 누군가를 깊이 사랑하는 것이, 그 누군가를 깊이 상처 입히는 것과 같아야 하는지를 말이야.<br><br> 즉 만일 그렇다면, 누군가를 깊이 사랑하는 것에 도대체 무슨 의미가 있어? 도대체 왜 그런 일이 일어나야만 하는 거냐구?"
+    <br><br><br>
+      너는 어찌할 바를 모르고 있어. </p>
+
+    <script>
+        // 페이지가 로드될 때 애니메이션을 트리거
+        window.addEventListener('load', function() {
+          const elements = document.querySelectorAll('.fade-in');
+          elements.forEach(function(element, index) {
+            setTimeout(function() {
+              element.style.opacity = 1;
+            }, 1000 * index); // 0.5초 간격으로 나타남 (조절 가능)
+          });
+        });
+        function startFallingText(textId, delay) {
+  const textElement = document.getElementById(textId);
+  textElement.style.left = Math.random() * window.innerWidth + 'px'; // 랜덤한 가로 위치
+  textElement.style.top = -textElement.offsetHeight + 'px'; // 화면 상단 외부에 숨김
+  
+  textElement.animate([
+    { top: -textElement.offsetHeight + 'px', opacity: 10 },
+    { top: '100%', opacity: 20 }
+  ], {
+    duration: 10000, // 애니메이션 지속 시간 (5초)
+    delay: delay, // 지연 시간 (밀리초)
+    iterations: Infinity
+  });
+}
+
+// 텍스트 떨어뜨리기 시작
+startFallingText('text1', 0);
+startFallingText('text2', 3000);
+startFallingText('text3', 6000);
+
+
+// 클릭한 텍스트를 새 창 또는 탭으로 열어 새 페이지로 이동하는 함수
+function goToPage(pageUrl) {
+  window.location.href = pageUrl;
+}
+        </script>
+        </div>
+</body>
+</html>

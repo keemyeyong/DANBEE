@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <title>DANBEE</title>
+<style>
+@import url(//fonts.googleapis.com/earlyaccess/nanummyeongjo.css);
+   body {
+    background-image: url('b11.jpg'); /* 이미지 파일 경로 설정 */
+  background-size: cover; /* 이미지를 화면에 맞게 조절 */
+  background-repeat: no-repeat; /* 이미지 반복 없음 */
+  background-position: center center; /* 이미지 중앙 정렬 */
+  background-attachment: fixed; /* 스크롤 시 배경 고정 (선택 사항) */
+   }
+  /* 텍스트 스타일 지정 */
+  .falling-text {
+    position: absolute;
+    font-size: 15px; /* 폰트 크기 조절 */
+    font-family: 'Nanum Myeongjo';
+    color: #000000;
+    white-space: nowrap; /* 텍스트가 한 줄로 끊기지 않도록 설정 */
+    display: inline-block; /* 한 글자씩 나타나도록 인라인 블록으로 설정 */
+    cursor: pointer; /* 커서를 포인터로 변경하여 클릭 가능하게 함 */
+    background-color: #f4ce53; /* 텍스트 박스 색상 지정 (예: 연한 회색) */
+    
+    padding: 6px; /* 텍스트 박스 패딩 설정 (선택 사항) */
+
+   /* 텍스트 주변에 백그라운드 컬러를 갖는 사각형 스트로크 설정 */
+   text-decoration: none;
+    box-shadow: 0 0 0 1px #000000; /* 2px 두께의 스트로크 박스, 색상은 #f4ce53 (예: 연한 회색) */
+
+
+  }
+</style>
+</head>
+<body>
+<div class="falling-text" id="text1" onclick="goToPage('page1.html')">그렇다면 나는 도대체 무엇인가?</div>
+<div class="falling-text" id="text2" onclick="goToPage('page2.html')">봄날의 곰만큼 좋아</div>
+<div class="falling-text" id="text3" onclick="goToPage('page3.html')">그 도시에 가고싶다고, 나는 얼마나 간절히 바랐던가</div>
+<div class="falling-text" id="text4" onclick="goToPage('page4.html')">이 세계에서 마음속에 비밀을 품지 않은 사람은 없다</div>
+<div class="falling-text" id="text5" onclick="goToPage('page5.html')">영겁을 추구하지 않는 사랑에 어느 정도의 가치가 있단 말인가</div>
+<div class="falling-text" id="text6" onclick="goToPage('page6.html')">세계는 메타포야</div>
+<div class="falling-text" id="text7" onclick="goToPage('page7.html')">기억이란 참 이상하다</div>
+<div class="falling-text" id="text8" onclick="goToPage('page8.html')">나오코는 나를 사랑하지조차 않았던 것이다</div>
+<div class="falling-text" id="text9" onclick="goToPage('page9.html')">뒤틀림이야말로 존재의 조건이야</div>
+<div class="falling-text" id="text10" onclick="goToPage('page10.html')">너는 어찌할 바를 모르고 있어</div>
+<!-- 떨어질 텍스트 줄을 추가할 수 있습니다. -->
+
+<script>
+  // 이미지 경로 배열 설정
+  //const imagePaths = ['w4.jpg', 'w5.jpg', 'w6.jpg', 'w7.jpg'];
+    //let currentImageIndex = 0;
+
+    // 배경 이미지 변경 함수
+   // function changeBackgroundImage() {
+       // document.body.style.backgroundImage = `url('${imagePaths[currentImageIndex]}')`;
+       // currentImageIndex = (currentImageIndex + 1) % imagePaths.length;
+   // }
+
+    // 페이지가 로드될 때 배경 이미지 설정 및 타이머 시작
+   // window.addEventListener('load', function() {
+       // changeBackgroundImage();
+       // setInterval(changeBackgroundImage, 500); // 2초마다 이미지 변경 (2000ms = 2초)
+   // });
+
+// JavaScript를 사용하여 위치 및 애니메이션을 조정합니다.
+function startFallingText(textId, delay) {
+  const textElement = document.getElementById(textId);
+  textElement.style.left = Math.random() * window.innerWidth + 'px'; // 랜덤한 가로 위치
+  textElement.style.top = -textElement.offsetHeight + 'px'; // 화면 상단 외부에 숨김
+  
+  textElement.animate([
+    { top: -textElement.offsetHeight + 'px', opacity: 10 },
+    { top: '100%', opacity: 20 }
+  ], {
+    duration: 10000, // 애니메이션 지속 시간 (5초)
+    delay: delay, // 지연 시간 (밀리초)
+    iterations: Infinity
+  });
+}
+
+// 텍스트 떨어뜨리기 시작
+startFallingText('text1', 0);
+startFallingText('text2', 1000);
+startFallingText('text3', 2000);
+startFallingText('text4', 3000);
+startFallingText('text5', 4000);
+startFallingText('text6', 5000);
+startFallingText('text7', 6000);
+startFallingText('text8', 7000);
+startFallingText('text9', 8000);
+startFallingText('text10', 9000);
+
+// 클릭한 텍스트를 새 창 또는 탭으로 열어 새 페이지로 이동하는 함수
+function goToPage(pageUrl) {
+  window.location.href = pageUrl;
+}
+</script>
+</body>
+</html>
