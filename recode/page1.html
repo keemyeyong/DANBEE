@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <title>DANBEE.1</title>
+    <style>
+      @import url(//fonts.googleapis.com/earlyaccess/nanummyeongjo.css);
+         /* 스타일을 지정하여 초기에 투명하게 설정 */
+  .fade-in {
+    opacity: 0;
+    transition: opacity 1s ease-in-out; /* 페이드 인 애니메이션 지속 시간과 이징 효과 설정 */
+    display: in;
+  }
+
+  body {
+    background-image: url('b22.jpg'); /* 이미지 파일 경로 설정 */
+  background-size: cover; /* 이미지를 화면에 맞게 조절 */
+  background-repeat: no-repeat; /* 이미지 반복 없음 */
+  background-position: center center; /* 이미지 중앙 정렬 */
+  background-attachment: fixed; /* 스크롤 시 배경 고정 (선택 사항) */
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* 화면 높이의 100%로 설정하여 화면 중앙에 위치시킴 */
+  text-align: center; /* 글을 가운데 정렬 */
+}
+
+.container {
+  
+  text-align: left; /* 내용을 왼쪽 정렬 */
+  padding: 20px; /* 원하는 패딩 설정 */
+}
+.fade-in {
+  font-size: 17px; 
+  font-family: 'Nanum Myeongjo';
+  color: #ffffff; /* 텍스트 폰트 색상 설정 (예: 빨간색) */
+  
+}
+.falling-text {
+    position: absolute;
+    font-size: 15px; /* 폰트 크기 조절 */
+    font-family: 'Nanum Myeongjo';
+    color: #000000;
+    white-space: nowrap; /* 텍스트가 한 줄로 끊기지 않도록 설정 */
+    display: inline-block; /* 한 글자씩 나타나도록 인라인 블록으로 설정 */
+    cursor: pointer; /* 커서를 포인터로 변경하여 클릭 가능하게 함 */
+    background-color: #f4ce53; /* 텍스트 박스 색상 지정 (예: 연한 회색) */
+    
+    padding: 6px; /* 텍스트 박스 패딩 설정 (선택 사항) */
+
+   /* 텍스트 주변에 백그라운드 컬러를 갖는 사각형 스트로크 설정 */
+   text-decoration: none;
+    box-shadow: 0 0 0 1px #000000; /* 2px 두께의 스트로크 박스, 색상은 #f4ce53 (예: 연한 회색) */
+
+
+  }
+
+      </style>
+</head>
+<body>
+  <div class="falling-text" id="text1" onclick="goToPage('recode.html')">☂</div>
+<div class="falling-text" id="text2" onclick="goToPage('recode.html')">☂</div>
+<div class="falling-text" id="text3" onclick="goToPage('recode.html')">☂</div>
+    <div class="container">
+
+<p class="fade-in">청년은 푹신한 의자에서 눈을 감고 음악을 들으며 여러 가지를 생각했다. 주로 자신이라는 존재에 대해서 생각했다.<br><br>
+    하지만 생각하면 할수록 거기에는 실체가 없는 것 같았다.<br><br> 있는 것은 단지 의미 없는 부속물에 지나지 않는다는 느낌이 들었다. 
+    <br><br><br>예를 들어, 나는 지금까지 드레곤스를 열심히 응원해 왔다. <br><br>그러나 나한테 드레곤스라는 것이 도대체 무엇이란 말인가?
+    <br><br>드레곤스가 자이언츠에 승리하면, 나라는 인간이 조금이라도 향상된단 말인가? 향상될 리 없지, 하고 청년은 생각했다. 
+    <br><br>그럼 무엇 때문에 그런 것을 마치 자기의 분신처럼 지금까지 열심히 응원해 온 걸까?<br><br>
+    나카타 씨는 자신이 텅 비었다고 했다. 그럴지도 모른다. <br><br><br>그렇다면 나는 도대체 무엇인가?<br><br> 나카타 씨는 어렸을 때 당한 사고 때문에 텅 비게 되었다고 한다. 
+    <br><br>그러나 나는 사고도 당하지 않았다. 
+    <br><br><br>만일 나카타 씨가 텅 빈 거라면,나 따위는 아무리 생각해도 텅 빈 것 이하가 아닐까?  
+    
+  </p>
+    <script>
+        // 페이지가 로드될 때 애니메이션을 트리거
+        window.addEventListener('load', function() {
+          const elements = document.querySelectorAll('.fade-in');
+          elements.forEach(function(element, index) {
+            setTimeout(function() {
+              element.style.opacity = 1;
+            }, 1000 * index); // 0.5초 간격으로 나타남 (조절 가능)
+          });
+        });
+        function startFallingText(textId, delay) {
+  const textElement = document.getElementById(textId);
+  textElement.style.left = Math.random() * window.innerWidth + 'px'; // 랜덤한 가로 위치
+  textElement.style.top = -textElement.offsetHeight + 'px'; // 화면 상단 외부에 숨김
+  
+  textElement.animate([
+    { top: -textElement.offsetHeight + 'px', opacity: 10 },
+    { top: '100%', opacity: 20 }
+  ], {
+    duration: 10000, // 애니메이션 지속 시간 (5초)
+    delay: delay, // 지연 시간 (밀리초)
+    iterations: Infinity
+  });
+}
+
+// 텍스트 떨어뜨리기 시작
+startFallingText('text1', 0);
+startFallingText('text2', 3000);
+startFallingText('text3', 6000);
+
+
+// 클릭한 텍스트를 새 창 또는 탭으로 열어 새 페이지로 이동하는 함수
+function goToPage(pageUrl) {
+  window.location.href = pageUrl;
+}
+        </script>
+        </div>
+</body>
+</html>
